@@ -1,0 +1,210 @@
+
+/* ========================================
+   CONFIGURAÇÕES GERAIS
+======================================== */
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: 'Inter', sans-serif;
+    background: #0a0a0c;
+    color: #f3f4f6;
+}
+
+/* ========================================
+   BARRA DE ROLAGEM
+======================================== */
+
+::-webkit-scrollbar {
+    width: 7px;
+}
+
+::-webkit-scrollbar-track {
+    background: #0a0a0c;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #272732;
+    border-radius: 5px;
+}
+
+/* ========================================
+   EFEITOS VISUAIS
+======================================== */
+
+.glow-red {
+    box-shadow: 0 0 25px rgba(239, 68, 68, 0.15);
+}
+
+button,
+a {
+    -webkit-tap-highlight-color: transparent;
+}
+
+button {
+    cursor: pointer;
+}
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible {
+    outline: 2px solid #ef4444;
+    outline-offset: 3px;
+}
+
+/* ========================================
+   CATEGORIAS
+======================================== */
+
+.cat-btn {
+    transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.cat-btn.active {
+    background: #dc2626 !important;
+    color: #ffffff !important;
+    border-color: #dc2626 !important;
+}
+
+/* ========================================
+   CARDS DE PRODUTOS
+======================================== */
+
+.product-card {
+    min-width: 0;
+    background: #121217;
+    border: 1px solid #272732;
+    border-radius: 16px;
+    overflow: hidden;
+    transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.product-card:hover {
+    border-color: rgba(239, 68, 68, 0.65);
+    transform: translateY(-4px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+}
+
+/* ========================================
+   IMAGENS DOS PRODUTOS
+======================================== */
+
+.product-image {
+    display: block;
+    height: 210px;
+    width: 100%;
+    object-fit: contain;
+    padding: 15px;
+}
+
+.product-card img {
+    max-width: 100%;
+}
+
+/* ========================================
+   SELEÇÃO DE CORES
+======================================== */
+
+.color-option {
+    width: 25px;
+    height: 25px;
+    min-width: 25px;
+    border-radius: 50%;
+    border: 2px solid #555;
+    cursor: pointer;
+    transition: transform 0.2s ease, outline 0.2s ease;
+}
+
+.color-option:hover {
+    transform: scale(1.12);
+}
+
+.color-option.selected {
+    outline: 2px solid #ef4444;
+    outline-offset: 3px;
+}
+
+/* ========================================
+   CARRINHO
+======================================== */
+
+#cartDrawer {
+    transition: opacity 0.2s ease;
+}
+
+#cartItemsList {
+    overscroll-behavior: contain;
+}
+
+#cartItemsList button {
+    min-width: 28px;
+    min-height: 28px;
+    border-radius: 6px;
+    background: #272732;
+    color: #ffffff;
+}
+
+#cartItemsList button:hover {
+    background: #dc2626;
+}
+
+#cartItemsList button.ml-auto {
+    background: transparent;
+    color: #ef4444;
+}
+
+/* ========================================
+   MODAIS
+======================================== */
+
+.modal {
+    display: none;
+}
+
+.modal.open {
+    display: flex;
+}
+
+/* ========================================
+   NOTIFICAÇÕES
+======================================== */
+
+.toast {
+    max-width: calc(100vw - 40px);
+    transition: 0.3s ease;
+    transform: translateY(100px);
+    opacity: 0;
+    pointer-events: none;
+}
+
+.toast.show {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+/* ========================================
+   RESPONSIVIDADE
+======================================== */
+
+@media (max-width: 640px) {
+    .product-image {
+        height: 200px;
+    }
+
+    .product-card:hover {
+        transform: none;
+    }
+
+    #toast {
+        right: 12px;
+        bottom: 12px;
+    }
+}

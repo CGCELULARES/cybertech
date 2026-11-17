@@ -1,0 +1,205 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="CyberTech Store - Smartphones, tablets e tecnologia.">
+    <title>CyberTech Store</title>
+
+    <script>
+        tailwind = window.tailwind || {};
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        cyber: {
+                            bg: '#0a0a0c',
+                            card: '#121217',
+                            border: '#272732',
+                            red: '#ef4444'
+                        }
+                    }
+                }
+            }
+        };
+    </script>
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+
+<body class="min-h-screen flex flex-col">
+
+    <div id="toast" class="toast fixed bottom-5 right-5 z-[100] bg-cyber-card border border-red-500 rounded-xl p-4 shadow-xl">
+        <div class="flex gap-3 items-center">
+            <i class="fa-solid fa-circle-check text-red-500 text-xl"></i>
+            <div>
+                <strong id="toast-title">Sucesso</strong>
+                <p id="toast-msg" class="text-xs text-gray-400"></p>
+            </div>
+        </div>
+    </div>
+
+    <header class="sticky top-0 z-40 bg-[#0a0a0c]/95 backdrop-blur-md border-b border-cyber-border">
+        <div class="bg-gradient-to-r from-red-900/60 via-red-600/30 to-cyber-bg text-center text-xs py-2 px-3">
+            ⚡ CyberTech Store | Tecnologia e inovação
+        </div>
+
+        <div class="max-w-7xl mx-auto px-4 h-20 flex items-center justify-between gap-4">
+            <a href="./index.html" class="flex items-center gap-2">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-red-600 to-rose-500 flex items-center justify-center">
+                    <i class="fa-solid fa-bolt text-white text-lg"></i>
+                </div>
+                <div>
+                    <span class="text-lg font-extrabold tracking-wider">
+                        CYBER<span class="text-red-500">TECH</span>
+                    </span>
+                    <p class="text-[9px] tracking-widest text-gray-400">STORE & GADGETS</p>
+                </div>
+            </a>
+
+            <nav class="hidden md:flex items-center gap-6 text-sm">
+                <a href="./index.html" class="text-red-500 font-bold">Início</a>
+                <a href="./celulares.html" class="text-gray-300 hover:text-red-500 transition">Celulares</a>
+            </nav>
+
+            <div class="hidden md:block flex-1 max-w-md relative">
+                <input id="searchInput" type="text" placeholder="Buscar produtos..."
+                    oninput="filterProducts()"
+                    class="w-full bg-cyber-card border border-cyber-border rounded-xl px-4 py-3 pl-11 text-sm outline-none focus:border-red-500">
+                <i class="fa-solid fa-search absolute left-4 top-4 text-gray-500"></i>
+            </div>
+
+            <button type="button" onclick="toggleCart()" aria-label="Abrir carrinho"
+                class="relative bg-cyber-card border border-cyber-border p-3 rounded-xl hover:border-red-500">
+                <i class="fa-solid fa-cart-shopping text-lg"></i>
+                <span id="cartCount" class="absolute -top-2 -right-2 bg-red-600 text-white text-[10px] font-bold w-5 h-5 rounded-full flex items-center justify-center">0</span>
+            </button>
+        </div>
+
+        <div class="md:hidden px-4 pb-3 relative">
+            <input id="searchMobile" type="text" placeholder="Buscar produtos..."
+                oninput="filterProductsMobile()"
+                class="w-full bg-cyber-card border border-cyber-border rounded-xl px-4 py-3 pl-11 text-sm outline-none focus:border-red-500">
+            <i class="fa-solid fa-search absolute left-8 top-3.5 text-gray-500"></i>
+        </div>
+    </header>
+
+    <main class="flex-1 max-w-7xl mx-auto px-4 sm:px-6 py-8 w-full">
+
+        <section class="relative overflow-hidden rounded-3xl border border-cyber-border bg-gradient-to-r from-red-950/50 via-cyber-card to-cyber-bg p-8 sm:p-12 mb-12 glow-red">
+            <div class="absolute -right-20 -top-20 w-80 h-80 bg-red-600/10 rounded-full blur-3xl"></div>
+
+            <div class="relative z-10 max-w-2xl">
+                <span class="inline-block bg-red-600/20 text-red-400 border border-red-500/30 text-xs font-bold px-3 py-1 rounded-full mb-5">
+                    NOVA GERAÇÃO
+                </span>
+
+                <h1 class="text-3xl sm:text-5xl font-extrabold text-white mb-5 leading-tight">
+                    Tecnologia de Ponta na
+                    <span class="text-red-500">Palma da Sua Mão.</span>
+                </h1>
+
+                <p class="text-gray-400 text-sm sm:text-base mb-8">
+                    Descubra smartphones, tablets e acessórios com preços especiais.
+                    Escolha seu produto e compre diretamente pelo WhatsApp.
+                </p>
+
+                <a href="#produtos" class="inline-flex items-center gap-2 bg-red-600 hover:bg-red-700 px-6 py-3.5 rounded-xl font-bold text-sm transition">
+                    Ver Produtos <i class="fa-solid fa-arrow-down"></i>
+                </a>
+            </div>
+        </section>
+
+        <section class="mb-8" id="produtos">
+            <div class="mb-6">
+                <h2 class="text-2xl font-bold">Catálogo de Produtos</h2>
+                <p class="text-sm text-gray-400 mt-1">Escolha seu modelo e sua cor favorita.</p>
+            </div>
+
+            <div class="flex flex-wrap gap-2 mb-8">
+                <button type="button" onclick="filterCategory('all',this)" class="cat-btn active bg-red-600 text-white px-4 py-2 rounded-xl text-xs font-bold">
+                    Todos
+                </button>
+                <button type="button" onclick="filterCategory('celular',this)" class="cat-btn bg-cyber-card border border-cyber-border px-4 py-2 rounded-xl text-xs">
+                    Celulares
+                </button>
+                <button type="button" onclick="filterCategory('tablet',this)" class="cat-btn bg-cyber-card border border-cyber-border px-4 py-2 rounded-xl text-xs">
+                    Tablets
+                </button>
+                <button type="button" onclick="filterCategory('acessorio',this)" class="cat-btn bg-cyber-card border border-cyber-border px-4 py-2 rounded-xl text-xs">
+                    Acessórios
+                </button>
+            </div>
+
+            <div id="productGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                <div class="col-span-full text-center py-16 text-gray-400">
+                    <i class="fa-solid fa-spinner fa-spin text-2xl mb-3"></i>
+                    <p>Carregando produtos...</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div id="cartDrawer" class="fixed inset-0 z-50 hidden">
+        <div onclick="toggleCart()" class="absolute inset-0 bg-black/80"></div>
+
+        <div class="absolute right-0 top-0 h-full w-full max-w-md bg-cyber-card border-l border-cyber-border flex flex-col">
+            <div class="p-6 border-b border-cyber-border flex justify-between items-center">
+                <h3 class="text-lg font-bold">
+                    <i class="fa-solid fa-cart-shopping text-red-500 mr-2"></i>
+                    Seu Carrinho
+                </h3>
+                <button type="button" onclick="toggleCart()" class="text-gray-400 hover:text-white text-xl" aria-label="Fechar carrinho">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <div id="cartItemsList" class="flex-1 overflow-y-auto p-5"></div>
+
+            <div class="p-6 border-t border-cyber-border bg-cyber-bg">
+                <div class="flex justify-between mb-2 text-sm text-gray-400">
+                    <span>Subtotal</span>
+                    <span id="cartSubtotal">R$ 0,00</span>
+                </div>
+                <div class="flex justify-between text-lg font-bold mb-5">
+                    <span>Total PIX</span>
+                    <span id="cartTotal" class="text-red-500">R$ 0,00</span>
+                </div>
+                <button type="button" onclick="checkoutWhatsApp()" class="w-full bg-green-600 hover:bg-green-700 py-4 rounded-xl font-bold flex justify-center items-center gap-2">
+                    <i class="fa-brands fa-whatsapp text-xl"></i>
+                    Finalizar pelo WhatsApp
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <footer class="bg-cyber-card border-t border-cyber-border mt-20 py-12">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between gap-8">
+                <div>
+                    <h3 class="text-xl font-extrabold">CYBER<span class="text-red-500">TECH</span> STORE</h3>
+                    <p class="text-sm text-gray-400 mt-3 max-w-sm">
+                        Tecnologia, qualidade e atendimento direto pelo WhatsApp.
+                    </p>
+                </div>
+                <div class="text-sm text-gray-400">
+                    <p class="font-bold text-white mb-3">Atendimento</p>
+                    <p>Compre diretamente pelo WhatsApp.</p>
+                    <p>Consulte disponibilidade e condições.</p>
+                </div>
+            </div>
+            <div class="border-t border-cyber-border mt-8 pt-6 text-center text-xs text-gray-500">
+                © 2026 CyberTech Store. Todos os direitos reservados.
+            </div>
+        </div>
+    </footer>
+
+    <script type="module" src="./js/script.js"></script>
+</body>
+</html>
